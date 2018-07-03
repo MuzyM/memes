@@ -9,8 +9,6 @@ import logging
 
 
 logging.basicConfig(format = u"{time: '%(asctime)s', levelname: '%(levelname)s', message: '%(message)s'}", level = logging.DEBUG, datefmt = '%d.%m.%Y', filename = u'%(filename)s.log')
-# Сообщение отладочное
-logging.debug( u'This is a debug message' )
 
 print(sys.argv[0])
 try:
@@ -18,7 +16,6 @@ try:
 except OSError:
    logging.error( u'Error while opening the file' )
    sys.exit();
-    
     
 for line in f:
    for i in range(len(line)):
