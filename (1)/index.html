@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My little library</title>
+</head>
+<body>
+	<h1>My little library</h1>
+	<hr>
+	<p><input id="title" type="text" size="40" placeholder="Title">
+		
+	</input></p>
+	
+	<p><input id="author" type="text" size="40" placeholder="Author">
+		
+	</input></p>
+	
+	<p><input id="publisher" type="text" size="40" placeholder="Publisher">
+		
+	</p></input>
+	
+	<p><input id="year" type="text" size="40" placeholder="Year">
+		
+	</input></p>
+	
+	<p><b>Choose a column of sorting:</b><br>
+		<input type="radio" name="col-title" value="1"> Title<br>
+		<input type="radio" name="col-author" value="1"> Author<br>
+		<input type="radio" name="col-publisher" value="1"> Publisher<br>
+		<input type="radio" name="col-year" value="1"> Year<br>
+	</p>
+	<p><b>Choose a type of sorting:</b><br>
+		<input type="radio" name="sort-up" value="up"> From "A" to "Z"<br>
+		<input type="radio" name="sort-down" value="down"> From "Z" to "A"<br>
+	</p>
+	
+	<button onclick="add()">
+		Add
+	</button>
+	
+	<button onclick="find()">
+		Find
+	</button>
+	
+	<button onclick="remove()">
+		Remove
+	</button>
+	
+	<button disabled="True" onclick="bookSort()">
+		Sort
+	</button>
+
+  <script src="library.js"></script>
+</body>
+</html>
