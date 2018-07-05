@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="2.css" />
+    <script src="2.js"></script>
+
+</head>
+<body>
+
+<div class="auth-form">
+    <h2 class="auth-form_title">Login</h2>
+
+    <label for="name" class="auth-form_label">Username</label>
+    <div class="auth-form_input">
+        <input
+                id="name"
+                type="name"
+                name="name"
+
+        />
+    </div>
+
+    <label for = "password" class="auth-form_label">Password</label>
+    <div class="auth-form_input">
+        <input
+                id="password"
+                type="password"
+                name="password"
+
+        />
+    </div>
+
+    <button
+            onclick="Login()"
+            class="auth-form_button"
+    >Login</button>
+
+    <h6 class="auth-form_return" onclick="returnReg()">registration</h6>
+
+</div>
+</body>
+</html>
