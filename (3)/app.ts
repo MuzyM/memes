@@ -4,9 +4,21 @@ import * as bodyParser from "body-parser";
 const app = express();
 app.use(bodyParser.urlencoded( { extended: false}));
 
-let products = [];
-let balance = 0;
-let orders = [];
+type roflan = {
+    name            : string;
+    price           : number;
+    manufacturer    : string;
+    number_sales    : number;
+}
+
+type asket = {
+    name    : string;
+    date    : string;
+    price   : number;
+}
+let products    : roflan[] = [];
+let balance     : number = 0;
+let orders      : asket[] = [];
 
 
 function isNumeric(s : string) {
@@ -15,16 +27,16 @@ function isNumeric(s : string) {
 
 function formatDate() {
     let date = new Date();
-    let dd = date.getDate();
+    let dd = String(date.getDate());
     if (+dd < 10) dd = '0' + dd;
 
-    let mm = date.getMonth() + 1;
+    let mm = String(date.getMonth() + 1);
     if (+mm < 10) mm = '0' + mm;
 
     let yy = date.getFullYear();
 
-    let hh = date.getHours();
-    let mi = date.getMinutes();
+    let hh = String(date.getHours());
+    let mi = String(date.getMinutes());
 
     if (+hh < 10) hh = '0' + hh;
     if (+mi < 10) mi = '0' + mi;
