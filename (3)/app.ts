@@ -50,7 +50,7 @@ app.post("/product", (req, res) => {
         return res.status(400).send({
             message: "Invalid keys in body"
         });
-    } else if ( !isNumeric(req.body.price) ) {
+    } else if ( !isNumeric(req.body.price) || +req.body.price < 0) {
         return res.status(400).send({
             message: "'price' has an invalid value"
         });
@@ -64,11 +64,7 @@ app.post("/product", (req, res) => {
         req.body.price = +req.body.price;
         req.body["number_sales"] = 0;
         products.push(req.body);
-        return res.status(200).send({
-            "name": req.body.name,
-            "price" : req.body.price,
-            "manufacturer" : req.body.manufacturer
-        });
+        return res.status(200).send();
     }
 });
 
