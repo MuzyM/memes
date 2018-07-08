@@ -44,26 +44,26 @@ function formatDate() {
 }
 
 app.post("/product", (req, res) => {
-    let key = Object.keys(req.body);
+    let key = Object.keys(req.query);
     if (key.length != 3 || key.indexOf("name") == -1 || key.indexOf("price") == -1 || key.indexOf("manufacturer") == -1) {
         console.log(key);
         return res.status(400).send({
             message: "Invalid keys in body"
         });
-    } else if ( !isNumeric(req.body.price) || +req.body.price < 0) {
+    } else if ( !isNumeric(req.query.price) || +req.query.price < 0) {
         return res.status(400).send({
             message: "'price' has an invalid value"
         });
     } else {
         for (let i = 0; i < products.length; ++i)
-            if (products[i]["name"] == req.body.name && products[i]["price"] == req.body.price &&
-                products[i]["manufacturer"] == req.body.manufacturer)
+            if (products[i]["name"] == req.query.name && products[i]["price"] == req.query.price &&
+                products[i]["manufacturer"] == req.query.manufacturer)
                 return res.status(400).send({
                     "message": "This item is already in store"
                 });
-        req.body.price = +req.body.price;
-        req.body["number_sales"] = 0;
-        products.push(req.body);
+        req.query.price = +req.query.price;
+        req.query["number_sales"] = 0;
+        products.push(req.query);
         return res.status(200).send();
     }
 });
@@ -90,7 +90,7 @@ app.get("/product", (req, res) => {
 });
 
 app.delete("/product", (req, res) => {
-    let key = Object.keys(req.body);
+    let key = Object.keys(req.query);
     if (key.length != 1 || key.indexOf("name") == -1) {
         console.log(key);
         return res.status(400).send({
@@ -99,14 +99,14 @@ app.delete("/product", (req, res) => {
     }
     let isRemoved = false;
     for (let i = 0; i < products.length; ++i) {
-        if (products[i]["name"] == req.body.name) {
+        if (products[i]["name"] == req.query.name) {
             isRemoved = true;
             products.splice(i, 1);
         }
     }
     if (isRemoved)
-        res.status(200).send();
-    else res.status(400).send({
+        return res.status(200).send();
+    else return res.status(400).send({
         "message": "No such item is store"
     });
 });
@@ -137,14 +137,14 @@ app.post("/order", (req, res) => {
 
 app.get("/order", (req, res) => {
     if (orders.length == 0)
-        res.status(400).send({
+        return res.status(400).send({
             message: "No such product in store"
         });
-    res.status(200).send(orders);
+    return res.status(200).send(orders);
 });
 
 app.get("/balance", (req, res) => {
-    res.status(200).send({
+    return res.status(200).send({
         "balance": balance
     });
 });
@@ -154,10 +154,10 @@ app.get("/goods", (req, res) => {
     for (let i = 0; i < products.length; ++i)
         goods.push(products[i]["name"]);
     if (goods.length == 0)
-        res.status(400).send({
+        return res.status(400).send({
             "message": "List of goods is empty"
         });
-    res.status(200).send(goods);
+    return res.status(200).send(goods);
 });
 
 app.listen(3000, () => console.log("started"));
